@@ -1,0 +1,113 @@
+html {
+    background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+    background-size: cover;
+    font-family: 'helvetica neue';
+    text-align: center;
+    font-size: 10px;
+}
+body {
+    margin: 0;
+    font-size: 2rem;
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+}
+.clock {
+    width: 30rem;
+    height: 30rem;
+    border: 20px solid white;
+    border-radius: 50%;
+    margin: 50px auto;
+    position: relative;
+    padding: 2rem;
+    box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 0 1px 2px #EFEFEF,
+    inset 0 0 30px black,
+    0 0 10px 3px rgba(0, 0, 0, 0.2);
+    background: url(../img/bao.jpg) center center / cover no-repeat;
+}
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px);
+    /* account for the height of the clock hands */
+}
+.clock-face::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, .5);
+}
+.day-and-night {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: right;
+    box-shadow: 2px 5px 1px rgba(0, 0, 0, .5);
+}
+.hour-hand {
+    height: 10px;
+    margin-top: -5px;
+    width: 25%;
+    margin-left: 25%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background: black;
+    transition: all 1s linear;
+}
+.min-hand {
+    height: 8px;
+    margin-top: -4px;
+    width: 40%;
+    margin-left: 10%;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    background: black;
+    transition: all 1s linear;
+}
+.tw-min-hand::after {
+    content: "";
+    display: block;
+    margin-top: -13px;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+    background: url(../img/bao.jpg) -55px -9px/ 338% no-repeat;
+}
+.second-hand {
+    height: 4px;
+    margin-top: -2px;
+    width: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    background: red;
+    transition: all .05s cubic-bezier(0.49, 1.57, 0.51, 1.85);
+}
+.tw-second-hand::after {
+    content:"";
+    display: block;
+    margin-top: -13px;
+    margin-left: -10px;
+    width: 30px;
+    height: 30px;
+    background: url(../img/bao.jpg) -16px -8px/ 338% no-repeat;
+}
+.location {
+    transform: translateY(-10px);
+}
