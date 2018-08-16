@@ -6,18 +6,19 @@ let now = new Date();
 let secs = now.getSeconds();
 let mins = now.getMinutes();
 let hrs = now.getHours();
+console.log(hrs);
 let round = 0;
 let secCount = 0
 
-let dayNightNodelist = document.querySelectorAll('.day-and-night');
-let dayNight = Array.from(dayNightNodelist);
+let dayNight= document.querySelectorAll('.day-and-night');
+// let dayNight = Array.from(dayNightNodelist);
 let taipeiHr = hrs;
 let londonHr = hrs - 7;
-let tokyoHr = hrs - 1;
+let tokyoHr = hrs + 1;
 
-taipeiHr > 0 ? dayNight[0].innerHTML = "A.M." : dayNight[0].innerHTML = "P.M.";
-londonHr > 0 ? dayNight[1].innerHTML = "A.M." : dayNight[1].innerHTML = "P.M.";
-tokyoHr > 0 ? dayNight[2].innerHTML = "A.M." : dayNight[2].innerHTML = "P.M.";
+taipeiHr - 12 < 0 ? dayNight[0].innerHTML = "A.M." : dayNight[0].innerHTML = "P.M.";
+londonHr - 12 < 0 ? dayNight[1].innerHTML = "A.M." : dayNight[1].innerHTML = "P.M.";
+tokyoHr - 12 < 0 ? dayNight[2].innerHTML = "A.M." : dayNight[2].innerHTML = "P.M.";
 
 function setDate() {
     if (secs === 0) {
@@ -29,14 +30,25 @@ function setDate() {
     let minsDegree = (mins) * 360 / 60 + (secs + secCount) * 360 / 60 / 60 + 90;
     let hrsDegree = (hrs) * 360 / 12 + mins * 360 / 60 / 12 + (secs + secCount) * 360 / 60 / 60 / 12 + 90;
     secCount += 1;
-    secHand[0].style.transform = `rotate(${secsDegree}deg)`;
-    minHand[0].style.transform = `rotate(${minsDegree}deg)`;
-    hrHand[0].style.transform = `rotate(${hrsDegree}deg)`;
-    secHand[1].style.transform = `rotate(${secsDegree}deg)`;
-    minHand[1].style.transform = `rotate(${minsDegree}deg)`;
-    hrHand[1].style.transform = `rotate(${hrsDegree - 210}deg)`;
-    secHand[2].style.transform = `rotate(${secsDegree}deg)`;
-    minHand[2].style.transform = `rotate(${minsDegree}deg)`;
-    hrHand[2].style.transform = `rotate(${hrsDegree - 30}deg)`;
+    secHand.forEach(function (value, index, listObj) {
+        value.style.transform = `rotate(${secsDegree}deg)`;
+    });
+    minHand.forEach(function (value, index, listObj) {
+        value.style.transform = `rotate(${minsDegree}deg)`;
+    });
+    hrHand.forEach(function (value, index, listObj) {
+        if (index === 0) {
+            value.style.transform = `rotate(${hrsDegree}deg)`;
+            return;
+        };
+        if (index === 1) {
+            value.style.transform = `rotate(${hrsDegree - 210}deg)`;
+            return;
+        };
+        if (index === 2) {
+            value.style.transform = `rotate(${hrsDegree + 30}deg)`;
+            return;
+        };
+    });
 }
 setInterval(setDate, 1000);
