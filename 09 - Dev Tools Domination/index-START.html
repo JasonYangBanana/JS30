@@ -18,28 +18,50 @@
     }
 
     // Regular
-
+    console.log("hello~");
     // Interpolated
-
+    console.log('I am %s', "Jack");
     // Styled
-
+    console.log("%c big word", "font-size: 70px; color: green;");
     // warning!
-
+    console.warn("oh no!");
     // Error :|
-
+    console.error("error");
     // Info
-
+    console.info('info?');
     // Testing
-
+    console.assert(1 === 2 ,"That's wrong!");
     // clearing
-
+    console.clear();
     // Viewing DOM Elements
+    let p = document.querySelector("p");
+    console.log(p);
+    console.dir(p);
 
+    console.clear();
     // Grouping together
-
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+    console.log(`${dog.name}`);
+    console.log(`${dog.age}`);
+    console.groupEnd(`${dog.name}`);
+    });
     // counting
-
+    for (i = 0; i < 10; i++) {
+      console.count("Turtle");
+      if (i % 3 === 0) {
+        console.countReset("Turtle");
+      }
+    }
+console.clear();
     // timing
+    console.time(`fetching data`);
+    fetch("http://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/InterCity?$top=30&$format=JSON")
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd(`fetching data`);
+        console.log(data);
+      })
 
   </script>
 </body>

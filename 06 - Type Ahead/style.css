@@ -1,6 +1,6 @@
     html {
       box-sizing: border-box;
-      background:#ffc600;
+      background:black;
       font-family:'helvetica neue';
       font-size: 20px;
       font-weight: 200;
@@ -10,12 +10,12 @@
     }
     input {
       width: 100%;
-      padding:20px;
+      padding: 20px;
     }
 
     .search-form {
-      max-width:400px;
-      margin:50px auto;
+      max-width: 800px;
+      margin: 50px auto;
     }
 
     input.search {
@@ -38,7 +38,7 @@
       margin: 0;
       padding: 0;
       position: relative;
-      /*perspective:20px;*/
+      /* perspective:100px; */
     }
     .suggestions li {
       background:white;
@@ -47,7 +47,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
       margin:0;
       padding:20px;
-      transition: background 0.2s;
+      /* transition: background 0.2s; */
       display:flex;
       justify-content:space-between;
       text-transform: capitalize;
