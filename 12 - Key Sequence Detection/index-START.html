@@ -3,10 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Key Detection</title>
-  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+  <!-- <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script> -->
 </head>
+<style>
+  .heart {
+    display: none;
+    color: red;
+  }
+</style>
 <body>
+  <div class="hint">輸入konami code</div>
+  <audio src="./AreyouJett.m4a" id="player"></audio>
+  <span class="heart">&#x2665</span>
 <script>
+  const player = document.querySelector('#player');
+  const hint = document.querySelector('.hint');
+  const heart = document.querySelector('.heart');
+  const pressed = [];
+  const password = "38384040373937396665";
+
+  window.addEventListener('keyup', e => {
+    pressed.push(e.keyCode);
+    //splice(從後面數，保留密碼位數, push到陣列的index數*2,)
+    pressed.splice(-password.length / 2 - 1 , pressed.length - password.length / 2);
+    if (pressed.join('') === password) {
+      hint.style.display = "none";
+      heart.style.display = "block";
+      speak();
+    }
+  });
+
+  function speak(){
+    player.currentTime = 0;
+    player.play();
+  }
 </script>
 </body>
 </html>
