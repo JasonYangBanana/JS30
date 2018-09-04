@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+    .container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+    .planet {
+        background-color: lightblue;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 50%;
+        transform: rotate(0deg);
+        transform-origin: 50% 50%;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="planet"></div>
+    </div>
+<script>
+    let planet = document.querySelector('.planet');
+    let container = document.querySelector('.container');
+    let deg = 0;
+    let mouseX;
+    let mouseY;
+    let xMove;
+    let yMove;
+    let r = 50;
+    let planetRadius = planet.offsetHeight / 2;
+    
+    function checkMouse(e) {
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+        xMove = e.pageX - window.innerWidth / 2;
+        yMove = e.pageY - window.innerHeight / 2;
+    }
+    
+    function change() {
+        function rotate () {
+            deg++;
+        }
+        rotate();
+        planet.style.cssText = `transform: rotate(${deg}deg) translate(${xMove + r}px, ${yMove + r}px); transform-origin: ${xMove + planetRadius}px ${yMove + planetRadius}px;`;
+    }
+    setInterval(change, 10);
+    container.addEventListener('mousemove', checkMouse);
+</script>
+</body>
+</html>

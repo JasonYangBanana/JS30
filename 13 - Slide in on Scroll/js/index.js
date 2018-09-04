@@ -1,7 +1,6 @@
 function debounce(func, wait = 20, immediate = true) {
     var timeout;
     return function () {
-        console.log(arguments)
         var context = this,
             args = arguments;
         var later = function () {

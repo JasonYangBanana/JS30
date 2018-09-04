@@ -8,14 +8,36 @@
 
   <script>
     // start with strings, numbers and booleans
+    let age = 80;
+    let age2 = age;
+    console.log(age, age2);
+    age2 = 30;
+    console.log(age, age2);
+
+    let name = "Jason"
+    let name2 = name;
+    console.log(name, name2);
+    name2 = "Kai"
+    console.log(name, name2);
+
+    let isFull = true;
+    let isFull2 = isFull;
+    console.log(isFull, isFull2);
+    isFull2 = false;
+    console.log(isFull, isFull2);
+    //call by reference
+    console.clear()
 
     // Let's say we have an array
-    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
-
+    const commander = ['Andy', 'Henry', 'Jeremy'];
     // and we want to make a copy of it.
 
     // You might think we can just do something like this:
-
+    let newCommander = commander;
+    console.log(commander, newCommander);
+    // newCommander[0] = 'Kai';
+    console.log(commander, newCommander);
+    console.clear()
     // however what happens when we update that array?
 
     // now here is the problem!
@@ -27,26 +49,43 @@
     // So, how do we fix this? We take a copy instead!
 
     // one way
-
+    let newCommander2 = commander.slice();
+    newCommander2[0] = 'Kai';
+    console.log(commander, newCommander2);
+    console.clear();
     // or create a new array and concat the old one in
+    let newCommander3 = [].concat(commander);
+    newCommander3[0] = 'Kai';
+    console.log(commander, newCommander3);
+    console.clear();
 
     // or use the new ES6 Spread
-
+    let newCommander4 = [...commander];
+    newCommander4[0] = 'Kai';
+    console.log(commander, newCommander4);
     // now when we update it, the original one isn't changed
-
+    console.clear();
     // The same thing goes for objects, let's say we have a person object
 
     // with Objects
-    const person = {
-      name: 'Wes Bos',
+    const general = {
+      name: 'Chris',
       age: 80
     };
 
     // and think we make a copy:
-
+    const newGeneral = general;
+    // newGeneral.name = 'Jimmy';
+    // console.log(general, newGeneral);
     // how do we take a copy instead?
-
+    const newGeneral2 = Object.assign({}, general, {name : 'Jimmy', age: 90})
+    console.log(general, newGeneral2);
+    console.clear();
     // We will hopefully soon see the object ...spread
+    const newGeneral3 = {...general};
+    newGeneral3.name = 'Jimmy';
+    newGeneral3.age = 90;
+    console.log(general, newGeneral3);
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
