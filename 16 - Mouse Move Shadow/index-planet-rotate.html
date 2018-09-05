@@ -37,30 +37,36 @@
 <script>
     let planet = document.querySelector('.planet');
     let container = document.querySelector('.container');
-    let deg = 0;
-    let mouseX;
-    let mouseY;
-    let xMove;
-    let yMove;
-    let r = 50;
-    let planetRadius = planet.offsetHeight / 2;
-    
-    function checkMouse(e) {
-        mouseX = e.pageX;
-        mouseY = e.pageY;
-        xMove = e.pageX - window.innerWidth / 2;
-        yMove = e.pageY - window.innerHeight / 2;
-    }
-    
-    function change() {
-        function rotate () {
-            deg++;
+    function position() {
+        let deg = 0;
+        let mouseX;
+        let mouseY;
+        let xMove;
+        let yMove;
+        let r = 50;
+        let planetRadius = planet.offsetHeight / 2;
+
+        return {
+            checkMouse : function (e) {
+                mouseX = e.pageX;
+                mouseY = e.pageY;
+                xMove = e.pageX - window.innerWidth / 2;
+                yMove = e.pageY - window.innerHeight / 2;
+            },
+
+            change: function () {
+                function rotate() {
+                    deg++;
+                }
+                rotate();
+                planet.style.cssText = `transform: rotate(${deg}deg) translate(${xMove + r}px, ${yMove + r}px); transform-origin: ${xMove + planetRadius}px ${yMove + planetRadius}px;`;
+            }
         }
-        rotate();
-        planet.style.cssText = `transform: rotate(${deg}deg) translate(${xMove + r}px, ${yMove + r}px); transform-origin: ${xMove + planetRadius}px ${yMove + planetRadius}px;`;
     }
-    setInterval(change, 10);
-    container.addEventListener('mousemove', checkMouse);
+
+    const posit = position();
+    setInterval(posit.change, 10);
+    container.addEventListener('mousemove', posit.checkMouse);
 </script>
 </body>
 </html>
