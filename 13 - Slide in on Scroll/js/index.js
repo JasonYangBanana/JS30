@@ -19,6 +19,7 @@ function checkSlide() {
     slideImages.forEach(slideImage => {
         //視窗底部往上"圖片一半高"
         const slideinAt = window.scrollY + window.innerHeight - slideImage.height / 2;
+        console.log(slideImage, slideImage.height);
         //image的底部
         const imageBottom = slideImage.offsetTop + slideImage.height;
         const isHalfShown = slideinAt > slideImage.offsetTop;
