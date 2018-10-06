@@ -182,27 +182,28 @@
     </li>
   </ul>
 <script>
-  const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
-  const seconds = timeNodes
-    .map(node => node.dataset.time)
-    .map(timeCode => {
-      const [mins, secs] = timeCode.split(':')
-      .map(function(str){
-        return parseFloat(str);
-      });
-      return (mins * 60) + secs;
-    })
-    .reduce((total, videoSeconds) => total + videoSeconds);
-    
-    let secondLeft = seconds;
-
-    const hours = Math.floor(secondLeft / 3600);
-    secondLeft %= 3600;
-
-    const mins = Math.floor(screenLeft / 60);
-    secondLeft %= 60;
-
-    
+  const timeNodes = document.querySelectorAll('[data-time]');
+  const totalSeconds = [...timeNodes]
+    .map(node => toSecond(node.dataset.time))
+    .reduce((total,videoSec) => total + videoSec);
+  
+  function toSecond(time) {
+    const [mins, secs] = time.split(':').map(str => parseFloat(str));
+    // const [mins, seconds] = time.split(':').map(parseFloat); //也可以寫成這樣
+    return mins * 60 + secs;
+  }
+  function toHMS(secondsLeft){
+    const hrs = Math.floor(secondsLeft / 3600);
+    const mins = Math.floor(secondsLeft % 3600 / 60);
+    const secs = secondsLeft % 3600 % 60;
+    return {
+      hr: hrs,
+      min: mins,
+      sec: secs
+    }
+  }
+  const totalTime = toHMS(totalSeconds);
+  console.log(totalTime);
 </script>
 </body>
 </html>
