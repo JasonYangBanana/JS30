@@ -54,7 +54,17 @@
   </div>
 
 <script>
+const nav = document.querySelector('#main');
+const logo = document.querySelector('.logo');
+const topOfNav = nav.offsetTop;
+console.log(logo);
 
+function fixNav() {
+  window.scrollY >= topOfNav 
+  ? logo.style.flex = 1
+  : logo.style.flex = 0; 
+}
+window.addEventListener('scroll', fixNav);
 </script>
 
 </body>
