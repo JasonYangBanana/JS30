@@ -221,6 +221,41 @@
 </style>
 
 <script>
+  const triggers = document.querySelectorAll('.cool > li');
+  const dropdownBackground = document.querySelector('.dropdownBackground');
+  const nav  = document.querySelector('.top');
+  function dropdownEnter() {
+    dropdownBackground.classList.add('open');
+    this.classList.add('trigger-enter');
+    // setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
+    setTimeout(() => {
+      if(this.classList.contains('trigger-enter')) {
+        this.classList.add('trigger-enter-active');
+      }
+    }, 200);   
+
+    const dropdown = this.querySelector('.dropdown');
+    const dropdownCoords = dropdown.getBoundingClientRect();
+    const navCoords = nav.getBoundingClientRect();
+    const coords = {
+      width: dropdownCoords.width,
+      height: dropdownCoords.height,
+      top: dropdownCoords.top - navCoords.top,
+      left: dropdownCoords.left - navCoords.left
+    }
+    dropdownBackground.style.setProperty('width', `${coords.width}px`);
+    dropdownBackground.style.setProperty('height', `${coords.height}px`);
+    dropdownBackground.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
+  }
+
+  function dropdownLeave() {
+    dropdownBackground.classList.remove('open');
+    this.classList.remove('trigger-enter', 'trigger-enter-active');
+  }
+  triggers.forEach(trigger => trigger.addEventListener('mouseenter', dropdownEnter));
+  triggers.forEach(trigger => trigger.addEventListener('mouseleave', dropdownLeave));
+
+
 </script>
 
 </body>
