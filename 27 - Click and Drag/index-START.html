@@ -35,7 +35,34 @@
   </div>
 
 <script>
+const items = document.querySelector('.items');
+let isDown = false;
+let originX;
+let scrollLeft;
+function pressRightButton(e) {
+  isDown = true;
+  this.classList.add('active');
+  originX = e.pageX - items.scrollLeft;
+  scrollLeft = items.scrollLeft;
+}
+function releaseRightButton() {
+  isDown = false;
+  this.classList.remove('active');
+}
+function moveMouse(e) {
+  if(!isDown) return;
+  let newX = e.pageX - items.scrollLeft;
+  let move = (newX - originX) / 2;
+  items.scrollLeft = scrollLeft - move;
+}
+function moveLeave() {
+  isDown = false;
+  this.classList.remove('active');
+}
+items.addEventListener('mousedown', pressRightButton);
+items.addEventListener('mouseup', releaseRightButton);
+items.addEventListener('mousemove', moveMouse);
+items.addEventListener('mouseleave', moveLeave);
 </script>
-
-  </body>
+</body>
 </html>
