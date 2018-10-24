@@ -17,6 +17,7 @@ function timer(seconds) {
     // check if we should stop it!
     if(secondsLeft < 0) {
       clearInterval(countdown);
+      player.c
       return;
     }
     // display it

@@ -17,8 +17,9 @@ function draw(e) {
     if (!isDrawing) return;
     ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     ctx.beginPath();
-    ctx.moveTo(lastX, lastY)
-    ctx.lineTo(e.offsetX, e.offsetY)
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.closePath();
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY]
     hue++;
@@ -32,8 +33,8 @@ function draw(e) {
         ctx.lineWidth++;
     } else {
         ctx.lineWidth--;
-        }
     }
+}
 
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;

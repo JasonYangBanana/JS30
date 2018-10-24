@@ -84,7 +84,7 @@ console.log(comment);
 
 const index = comments.findIndex(comment => comment.id === 823423);
 comments.splice(index, 1);
-console.table(comments);
+console.table(index, comments);
 
 //自我挑戰題,使用arr.slice()刪除people小於20歲的人
 
