@@ -33,14 +33,14 @@ function timerStart() {
 function showTimeLeft(secondLeft) {
     const minLeft = Math.floor(secondLeft / 60);
     secondLeft %= 60;
-    const timeLeft = `${minLeft}:${secondLeft}`;
+    const timeLeft = `${minLeft}:${secondLeft < 10 ? '0': ''}${secondLeft}`;
     displayTimeLeft.textContent = timeLeft;
 }
 function showEndTime(endMillionSec) {
     const end = new Date(endMillionSec)
     let endHr = end.getHours();
     let endMin = end.getMinutes();
-    const endTime = `計時器將在${endHr}:${endMin}到期`;
+    const endTime = `計時器將在${endHr}:${endMin < 10 ? '0':''}${endMin}到期`;
     displayEndTime.textContent = endTime;
 }
 
